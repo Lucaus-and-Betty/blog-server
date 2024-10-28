@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import mdParse from 'src/utils/mdParse';
+import { ArticleInfoType } from './articles.interface';
 
 @Injectable()
 export class ArticlesService {
@@ -96,17 +98,27 @@ we have a list of [good first issues](https://github.com/facebook/react/labels/g
 React is [MIT licensed](./LICENSE).
 `;
 
-  private readonly testArticleInfo = {
+  private readonly testArticleInfo: ArticleInfoType = {
     id: '1',
     title: '测试标题，第一次测试标题以后不测了!!!',
     label: ['测试标签', '测试标签2'],
     publishTime: '2023-01-01',
     updateTime: '2023-01-01',
     readCount: 1,
-    content: this.testArticleContent
+    content: ''
   };
 
-  getArticleInfo() {
+  /**
+   * @description 通过id获取文章信息
+   * @param { string } id
+   * @returns { Promise<ArticleInfoType> } 文章信息
+   */
+  async getArticleInfoById(id: string): Promise<ArticleInfoType> {
+    if (id) {
+      const res = await mdParse(this.testArticleContent);
+      this.testArticleInfo.content = res;
+      return this.testArticleInfo;
+    }
     return this.testArticleInfo;
   }
 }

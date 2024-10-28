@@ -1,15 +1,15 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { ArticlesService } from './articles.service';
 
-@Controller('news')
+@Controller('articles')
 export class ArticlesController {
   constructor(private readonly articlesService: ArticlesService) {}
 
-  @Get('all')
-  getArticleInfoById() {
+  @Post('get-article-info-by-id')
+  async getArticleInfoById(@Body() id: string) {
     return {
       message: 'success',
-      data: this.articlesService.getArticleInfo()
+      data: await this.articlesService.getArticleInfoById(id)
     };
   }
 }
