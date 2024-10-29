@@ -1,14 +1,28 @@
 import { Module } from '@nestjs/common';
-import { ProjectsController } from './projects/projects.controller';
-import { ProjectsService } from './projects/projects.service';
-import { NewsController } from './news/news.controller';
-import { NewsService } from './news/news.service';
-import { ArticlesController } from './articles/articles.controller';
-import { ArticlesService } from './articles/articles.service';
+import { ProjectsController } from './api/projects/projects.controller';
+import { ProjectsService } from './api/projects/projects.service';
+import { NewsModule } from './api/news/news.module';
+import { DB_CONFIG } from 'src/db.config';
+import { join } from 'path';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { UploadModule } from './api/upload/upload.module';
+import { LabelsModule } from './api/labels/labels.module';
+import { ArticlesModule } from './api/articles/articles.module';
 
 @Module({
-  imports: [],
-  controllers: [ProjectsController, NewsController, ArticlesController],
-  providers: [ProjectsService, NewsService, ArticlesService]
+  imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '../', 'public/upload'),
+      serveRoot: '/static'
+    }),
+    NewsModule,
+    UploadModule,
+    LabelsModule,
+    ArticlesModule,
+    TypeOrmModule.forRoot(DB_CONFIG)
+  ],
+  controllers: [ProjectsController],
+  providers: [ProjectsService]
 })
 export class AppModule {}

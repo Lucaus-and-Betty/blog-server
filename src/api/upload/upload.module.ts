@@ -1,0 +1,25 @@
+import { Module } from '@nestjs/common';
+import { MulterModule } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { join, extname } from 'path';
+import { generateUUID } from 'src/utils/generateUUID';
+import { UploadController } from './upload.controller';
+import * as dayjs from 'dayjs';
+
+@Module({
+  imports: [
+    MulterModule.register({
+      // 用于配置上传，这部分也可以写在路由上
+      storage: diskStorage({
+        destination: join('./public/upload'),
+        filename: (_, file, callback) => {
+          const fileName = `${dayjs().format('YYYY-MM-DD') + '-' + generateUUID() + extname(file.originalname)}`;
+          return callback(null, fileName);
+        }
+      })
+    })
+  ],
+  controllers: [UploadController],
+  providers: []
+})
+export class UploadModule {}
