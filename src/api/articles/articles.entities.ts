@@ -24,6 +24,9 @@ export class Articles {
   @Column({ name: 'cover' })
   cover: string;
 
+  @Column({ name: 'des' })
+  des: string;
+
   @ManyToMany(() => Labels)
   @JoinTable()
   labels: Labels[];

@@ -13,7 +13,7 @@ export class LabelsService {
   ) {}
   async getAllLabel(): Promise<LabelType[] | null> {
     try {
-      const res = await this.labels.find();
+      const res = await this.labels.find({ order: { createTime: 'DESC' } });
       return res;
     } catch (error) {
       console.log(error);
@@ -25,6 +25,7 @@ export class LabelsService {
     const newLabel = new Labels();
     newLabel.id = generateUUID();
     newLabel.title = label.title;
+    newLabel.createTime = label.createTime;
     try {
       // 先检查是否已经存在
       const repeated = await this.labels.find({ where: { title: label.title } });

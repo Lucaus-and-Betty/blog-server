@@ -6,4 +6,7 @@ export class Labels {
 
   @Column({ name: 'title' })
   title: string;
+
+  @Column({ name: 'create_time' })
+  createTime: string;
 }

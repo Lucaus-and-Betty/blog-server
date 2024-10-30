@@ -7,4 +7,5 @@ export interface ArticleInfoType {
   content: string;
   cover: string;
   labels: string[];
+  des: string;
 }
