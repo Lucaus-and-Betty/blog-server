@@ -6,7 +6,7 @@ import { ProjectListItem } from './projects.interface';
 export class ProjectsController {
   constructor(private readonly projetsService: ProjectsService) {}
 
-  @Get('all')
+  @Get('get-all-projects')
   findAll() {
     return {
       message: 'success',

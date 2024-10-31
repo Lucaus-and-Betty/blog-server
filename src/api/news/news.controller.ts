@@ -8,7 +8,7 @@ import * as dayjs from 'dayjs';
 export class NewsController {
   constructor(private readonly newsService: NewsService) {}
 
-  @Get('all-show')
+  @Get('get-all-show-news')
   async findAll() {
     const news = await this.newsService.findAll();
     if (news) {

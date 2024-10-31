@@ -9,7 +9,7 @@ import mdParse from 'src/utils/mdParse';
 export class ArticlesController {
   constructor(private readonly articlesService: ArticlesService) {}
 
-  @Post('get-all-article-info')
+  @Post('get-page-article-info')
   async getArticleInfoById(@Body() body: { page: number; pageSize: number }) {
     const { page, pageSize } = body;
     if (page === 0) {
@@ -51,7 +51,7 @@ export class ArticlesController {
     }
   }
 
-  @Post('get-article-info-by-label')
+  @Post('get-page-article-info-by-label')
   async getArticleInfoByLabel(@Body() body: { labelId: string; page: number; pageSize: number }) {
     const { labelId, page, pageSize } = body;
     if (page === 0) {
