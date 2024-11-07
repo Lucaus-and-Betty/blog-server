@@ -20,13 +20,6 @@ export class ArticlesService {
    */
   async getAllArticleInfo(page: number, pageSize: number): Promise<{ isOver: boolean; data: Articles[] } | null> {
     try {
-      // const res = await this.articlesRepository
-      //   .createQueryBuilder('articles')
-      //   .select(['articles.id', 'articles.title', 'articles.cover', 'articles.publishTime', 'articles.des'])
-      //   .leftJoinAndSelect('articles.labels', 'labels')
-      //   .orderBy('articles.publishTime', 'DESC')
-      //   .getMany();
-
       const res = await this.articlesRepository
         .createQueryBuilder('articles')
         .select(['articles.id', 'articles.title', 'articles.cover', 'articles.publishTime', 'articles.des'])
@@ -80,14 +73,6 @@ export class ArticlesService {
     pageSize: number = 30
   ): Promise<{ isOver: boolean; data: Articles[] } | null> {
     try {
-      // 根据 label id 获取对应的文章, 文章的所有 labels 都要查出来
-      // const res = await this.articlesRepository
-      //   .createQueryBuilder('articles')
-      //   .select(['articles.id'])
-      //   .leftJoinAndSelect('articles.labels', 'labels')
-      //   .where('labels.id = :id', { id })
-      //   .getMany();
-
       const res = await this.articlesRepository
         .createQueryBuilder('articles')
         .select(['articles.id'])

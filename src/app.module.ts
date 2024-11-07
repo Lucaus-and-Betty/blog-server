@@ -9,6 +9,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UploadModule } from './api/upload/upload.module';
 import { LabelsModule } from './api/labels/labels.module';
 import { ArticlesModule } from './api/articles/articles.module';
+import { DiariesModule } from './api/diaries/diaries.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { ArticlesModule } from './api/articles/articles.module';
       serveRoot: '/static'
     }),
     NewsModule,
+    DiariesModule,
     UploadModule,
     LabelsModule,
     ArticlesModule,

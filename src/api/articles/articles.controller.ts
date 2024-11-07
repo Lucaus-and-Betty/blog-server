@@ -15,7 +15,10 @@ export class ArticlesController {
     if (page === 0) {
       return {
         message: 'success',
-        data: []
+        data: {
+          isOver: false,
+          data: []
+        }
       };
     }
     const res = await this.articlesService.getAllArticleInfo(page, pageSize);
@@ -57,7 +60,10 @@ export class ArticlesController {
     if (page === 0) {
       return {
         message: 'success',
-        data: []
+        data: {
+          isOver: false,
+          data: []
+        }
       };
     }
     const res = await this.articlesService.getArticleInfoByLabelId(labelId, page, pageSize);
