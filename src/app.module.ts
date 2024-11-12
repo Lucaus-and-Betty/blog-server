@@ -10,6 +10,8 @@ import { UploadModule } from './api/upload/upload.module';
 import { LabelsModule } from './api/labels/labels.module';
 import { ArticlesModule } from './api/articles/articles.module';
 import { DiariesModule } from './api/diaries/diaries.module';
+import { NovelsModule } from './api/novels/novels.module';
+import { LoveModule } from './api/love/love.module';
 
 @Module({
   imports: [
@@ -22,6 +24,8 @@ import { DiariesModule } from './api/diaries/diaries.module';
     UploadModule,
     LabelsModule,
     ArticlesModule,
+    NovelsModule,
+    LoveModule,
     TypeOrmModule.forRoot(DB_CONFIG)
   ],
   controllers: [ProjectsController],

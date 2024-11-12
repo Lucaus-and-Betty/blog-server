@@ -1,0 +1,42 @@
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { LoveList } from './love.entities';
+
+@Injectable()
+export class LoveService {
+  constructor(
+    @InjectRepository(LoveList)
+    private readonly loveList: Repository<LoveList>
+  ) {}
+
+  async findAll() {
+    const news = await this.loveList.find();
+    if (news) {
+      return {
+        message: 'success',
+        data: news
+      };
+    } else {
+      return {
+        message: 'error',
+        data: null
+      };
+    }
+  }
+
+  async addProject(project: LoveList) {
+    const res = await this.loveList.save(project);
+    if (res) {
+      return {
+        message: 'success',
+        data: res
+      };
+    } else {
+      return {
+        message: 'error',
+        data: null
+      };
+    }
+  }
+}
