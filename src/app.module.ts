@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { ProjectsController } from './api/projects/projects.controller';
-import { ProjectsService } from './api/projects/projects.service';
 import { NewsModule } from './api/news/news.module';
 import { DB_CONFIG } from 'src/db.config';
 import { join } from 'path';
@@ -12,6 +10,7 @@ import { ArticlesModule } from './api/articles/articles.module';
 import { DiariesModule } from './api/diaries/diaries.module';
 import { NovelsModule } from './api/novels/novels.module';
 import { LoveModule } from './api/love/love.module';
+import { ProjectsModule } from './api/projects/projects.module';
 
 @Module({
   imports: [
@@ -26,9 +25,8 @@ import { LoveModule } from './api/love/love.module';
     ArticlesModule,
     NovelsModule,
     LoveModule,
+    ProjectsModule,
     TypeOrmModule.forRoot(DB_CONFIG)
-  ],
-  controllers: [ProjectsController],
-  providers: [ProjectsService]
+  ]
 })
 export class AppModule {}

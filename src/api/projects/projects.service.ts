@@ -1,61 +1,60 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Project } from './projects.entities';
 import { ProjectListItem } from './projects.interface';
 
 @Injectable()
 export class ProjectsService {
-  private readonly projets: ProjectListItem[] = [
-    {
-      title: "Lucaus's project",
-      personalList: [
-        {
-          id: 1,
-          title: "Lucuas's project123123123123",
-          link: 'www.baidu.com'
-        },
-        {
-          id: 2,
-          title: "Lucuas's project",
-          link: 'www.baidu.com'
+  constructor(
+    @InjectRepository(Project)
+    private readonly project: Repository<Project>
+  ) {}
+
+  async findAll() {
+    const res = await this.project.find();
+    if (res) {
+      const lucausProject: ProjectListItem = {
+        title: "Lucaus's project",
+        personalList: []
+      };
+      const bettyProject: ProjectListItem = {
+        title: "Betty's project",
+        personalList: []
+      };
+      const ourProject: ProjectListItem = {
+        title: 'Our project',
+        personalList: []
+      };
+      res.forEach(item => {
+        if (item.blow === 'Lucaus') {
+          lucausProject.personalList.push({
+            id: item.id,
+            title: item.title,
+            link: item.link
+          });
+        } else if (item.blow === 'Betty') {
+          bettyProject.personalList.push({
+            id: item.id,
+            title: item.title,
+            link: item.link
+          });
+        } else {
+          ourProject.personalList.push({
+            id: item.id,
+            title: item.title,
+            link: item.link
+          });
         }
-      ]
-    },
-    {
-      title: "Betty's project",
-      personalList: [
-        {
-          id: 3,
-          title: "Betty's project",
-          link: 'www.baidu.com'
-        },
-        {
-          id: 4,
-          title: "Betty's project",
-          link: 'www.baidu.com'
-        }
-      ]
-    },
-    {
-      title: 'Our project',
-      personalList: [
-        {
-          id: 5,
-          title: 'Our project',
-          link: 'www.baidu.com'
-        },
-        {
-          id: 6,
-          title: 'Our project',
-          link: 'www.baidu.com'
-        }
-      ]
+      });
+      // 要是为空就不放进数组
+      return [
+        lucausProject.personalList.length > 0 ? lucausProject : null,
+        bettyProject.personalList.length > 0 ? bettyProject : null,
+        ourProject.personalList.length > 0 ? ourProject : null
+      ];
+    } else {
+      return null;
     }
-  ];
-
-  findAll() {
-    return this.projets;
-  }
-
-  addProject(project: ProjectListItem) {
-    this.projets.push(project);
   }
 }

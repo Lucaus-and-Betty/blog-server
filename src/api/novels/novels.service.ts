@@ -69,7 +69,7 @@ export class NovelsService {
   async getNovelChapterIdByPreviousId(previousId: string) {
     try {
       const res = await this.novelChapters.find({ where: { previousId } });
-      return res[0].id;
+      return res[0]?.id;
     } catch (error) {
       console.log(error);
       return null;
@@ -80,6 +80,20 @@ export class NovelsService {
     try {
       const res = await this.novelChapters.find({ where: { id } });
       return res[0];
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  }
+
+  async getNovelAllOrderAndName(novelId: string) {
+    try {
+      const res = await this.novelChapters
+        .createQueryBuilder('novelChapters')
+        .select(['novelChapters.order', 'novelChapters.name', 'novelChapters.id'])
+        .where('novelChapters.novelId = :novelId', { novelId })
+        .getMany();
+      return res;
     } catch (error) {
       console.log(error);
       return null;

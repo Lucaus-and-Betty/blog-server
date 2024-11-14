@@ -4,7 +4,7 @@ export interface ProjectListItem {
 }
 
 export interface PersonalListItem {
-  id: number;
+  id: string;
   title: string;
   link: string;
 }

@@ -141,4 +141,21 @@ export class NovlesController {
       };
     }
   }
+
+  @Post('get-novel-all-order-and-name')
+  async getNovelAllOrderAndName(@Body() body: { id: string }) {
+    try {
+      const { id } = body;
+      const res = await this.novelsService.getNovelAllOrderAndName(id);
+      return {
+        message: 'success',
+        data: res
+      };
+    } catch (error) {
+      return {
+        message: 'error',
+        data: null
+      };
+    }
+  }
 }

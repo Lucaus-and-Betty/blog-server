@@ -11,7 +11,7 @@ export class LoveService {
   ) {}
 
   async findAll() {
-    const news = await this.loveList.find();
+    const news = await this.loveList.find({ order: { publishTime: 'ASC' } });
     if (news) {
       return {
         message: 'success',
