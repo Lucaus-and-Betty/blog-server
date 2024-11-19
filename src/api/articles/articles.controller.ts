@@ -1,8 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { ArticlesService } from './articles.service';
-import { ArticleInfoType } from './articles.interface';
-import generateUUID from 'src/utils/generateUUID';
-import * as dayjs from 'dayjs';
 import mdParse from 'src/utils/mdParse';
 
 @Controller('articles')
@@ -71,43 +68,6 @@ export class ArticlesController {
       return {
         message: 'success',
         data: res
-      };
-    } else {
-      return {
-        message: 'error',
-        data: null
-      };
-    }
-  }
-
-  @Post('add-articles')
-  async addArticles(
-    @Body()
-    body: {
-      title: string;
-      content: string;
-      des: string;
-      labels: string[];
-      cover: string;
-    }
-  ) {
-    const { title, content, labels, cover, des } = body;
-    const article: ArticleInfoType = {
-      id: generateUUID(),
-      title,
-      publishTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
-      updateTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
-      readCount: 0,
-      content,
-      cover,
-      labels,
-      des
-    };
-    const res = await this.articlesService.addArticles(article);
-    if (res) {
-      return {
-        message: 'success',
-        data: body
       };
     } else {
       return {

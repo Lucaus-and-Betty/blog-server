@@ -24,19 +24,4 @@ export class LoveService {
       };
     }
   }
-
-  async addProject(project: LoveList) {
-    const res = await this.loveList.save(project);
-    if (res) {
-      return {
-        message: 'success',
-        data: res
-      };
-    } else {
-      return {
-        message: 'error',
-        data: null
-      };
-    }
-  }
 }

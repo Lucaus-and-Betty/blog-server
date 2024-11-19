@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Novles } from './novels.entities';
 import { NovelChapter } from './novel-chapter.entities';
-import { NovelChapterType } from './novels.interface';
 
 @Injectable()
 export class NovelsService {
@@ -38,24 +37,6 @@ export class NovelsService {
     try {
       const res = await this.novelChapters.find({ where: { id } });
       return res[0];
-    } catch (error) {
-      console.log(error);
-      return null;
-    }
-  }
-
-  async addNovelChapter(novelChapter: NovelChapterType) {
-    const newNovelChapter = new NovelChapter();
-    newNovelChapter.id = novelChapter.id;
-    newNovelChapter.novelId = novelChapter.novelId;
-    newNovelChapter.content = novelChapter.content;
-    newNovelChapter.time = novelChapter.time;
-    newNovelChapter.order = novelChapter.order;
-    newNovelChapter.previousId = novelChapter.previousId;
-    newNovelChapter.name = novelChapter.name;
-    try {
-      const res = await this.novelChapters.save(newNovelChapter);
-      return res;
     } catch (error) {
       console.log(error);
       return null;
