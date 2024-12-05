@@ -18,5 +18,3 @@ export const DB_CONFIG: TypeOrmModuleOptions = {
   synchronize: false,
   entities: []
 };
-
-console.log(DB_CONFIG);
