@@ -4,6 +4,10 @@ import * as path from 'path';
 
 dotenv.config({ path: path.join(__dirname, '../.env') });
 
+console.log(path.join(__dirname, '../.env'));
+
+console.log(process.env.NODE_ENV_DB_HOST);
+
 export const DB_CONFIG: TypeOrmModuleOptions = {
   type: 'mysql',
   host: process.env.NODE_ENV_DB_HOST,
