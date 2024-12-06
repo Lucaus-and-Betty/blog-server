@@ -6,7 +6,7 @@ async function bootstrap() {
   app.setGlobalPrefix('v1');
   app.enableCors({
     // origin: 'http://localhost:5173',
-    origin: 'http://116.196.66.106',
+    origin: 'http://116.196.66.106:8081',
     methods: 'GET,POST',
     allowedHeaders: 'Content-Type, Accept'
   });
