@@ -2,9 +2,9 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 
 if (process.env.RUNNING_ENV !== 'prod') {
-  dotenv.config({ path: `.env.dev` });
+  dotenv.config({ path: process.cwd() + '/.env.dev' });
 } else {
-  dotenv.config({ path: '.env.prod' });
+  dotenv.config({ path: process.cwd() + '/.env.prod' });
 }
 
 export const DB_CONFIG: TypeOrmModuleOptions = {
