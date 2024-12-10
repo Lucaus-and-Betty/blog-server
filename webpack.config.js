@@ -14,7 +14,7 @@ module.exports = function (options, webpack) {
     },
     externals: [
       nodeExternals({
-        allowlist: ['rehype-stringify', 'rehype-highlight', 'remark-gfm', 'remark-parse', 'remark-rehype', 'unified']
+        allowlist: ['rehype-stringify', 'rehype-highlight', 'remark-gfm', 'remark-parse', 'remark-rehype', 'unified', 'music-metadata']
       })
     ]
   };

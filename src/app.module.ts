@@ -11,6 +11,7 @@ import { DiariesModule } from './api/diaries/diaries.module';
 import { NovelsModule } from './api/novels/novels.module';
 import { LoveModule } from './api/love/love.module';
 import { ProjectsModule } from './api/projects/projects.module';
+import { MusicsModule } from './api/musics/musics.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { ProjectsModule } from './api/projects/projects.module';
     NovelsModule,
     LoveModule,
     ProjectsModule,
+    MusicsModule,
     TypeOrmModule.forRoot(DB_CONFIG)
   ]
 })
